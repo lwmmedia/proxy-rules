@@ -1,0 +1,37 @@
+# YouTube Proxy Rules
+
+# Updated: 2025-01-15
+
+# Compatible: Loon, Shadowrocket, Stash
+
+# Main YouTube domains
+
+DOMAIN-SUFFIX,youtube.com
+DOMAIN-SUFFIX,youtu.be
+DOMAIN-SUFFIX,youtube-nocookie.com
+
+# YouTube CDN and media servers
+
+DOMAIN-SUFFIX,googlevideo.com
+DOMAIN-SUFFIX,ytimg.com
+DOMAIN-SUFFIX,yt3.ggpht.com
+
+# YouTube API and services
+
+DOMAIN-SUFFIX,youtubei.googleapis.com
+DOMAIN-SUFFIX,youtube.googleapis.com
+
+# YouTube keywords
+
+DOMAIN-KEYWORD,youtube
+DOMAIN-KEYWORD,googlevideo
+
+# YouTube mobile apps
+
+USER-AGENT,*YouTube*
+USER-AGENT,*com.google.ios.youtube*
+
+# Additional YouTube infrastructure
+
+DOMAIN-SUFFIX,yt4.ggpht.com
+DOMAIN-SUFFIX,yt3.googleusercontent.com
