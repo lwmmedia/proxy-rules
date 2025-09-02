@@ -1,0 +1,52 @@
+# Telegram Proxy Rules
+
+# Updated: 2025-01-15
+
+# Compatible: Loon, Shadowrocket, Stash
+
+# Main Telegram domains
+
+DOMAIN-SUFFIX,telegram.org
+DOMAIN-SUFFIX,telegram.me
+DOMAIN-SUFFIX,telegra.ph
+DOMAIN-SUFFIX,telesco.pe
+DOMAIN-SUFFIX,tdesktop.com
+DOMAIN-SUFFIX,t.me
+
+# Telegram web domains
+
+DOMAIN-SUFFIX,web.telegram.org
+DOMAIN-SUFFIX,webz.telegram.org
+DOMAIN-SUFFIX,webk.telegram.org
+DOMAIN-SUFFIX,venus.web.telegram.org
+DOMAIN-SUFFIX,pluto.web.telegram.org
+
+# Telegram CDN
+
+DOMAIN-SUFFIX,cdn1.telegram.org
+DOMAIN-SUFFIX,cdn2.telegram.org
+DOMAIN-SUFFIX,cdn3.telegram.org
+DOMAIN-SUFFIX,cdn4.telegram.org
+DOMAIN-SUFFIX,cdn5.telegram.org
+
+# Telegram keywords
+
+DOMAIN-KEYWORD,telegram
+
+# Telegram IP ranges (main data centers)
+
+IP-CIDR,91.108.4.0/22,no-resolve
+IP-CIDR,91.108.8.0/22,no-resolve
+IP-CIDR,91.108.12.0/22,no-resolve
+IP-CIDR,91.108.16.0/22,no-resolve
+IP-CIDR,91.108.56.0/22,no-resolve
+IP-CIDR,149.154.160.0/20,no-resolve
+IP-CIDR,149.154.164.0/22,no-resolve
+IP-CIDR,149.154.168.0/22,no-resolve
+IP-CIDR,149.154.172.0/22,no-resolve
+IP-CIDR,95.161.64.0/20,no-resolve
+
+# Telegram mobile apps
+
+USER-AGENT,*Telegram*
+USER-AGENT,*TelegramDesktop*

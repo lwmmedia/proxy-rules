@@ -1,0 +1,36 @@
+# Twitter/X Proxy Rules
+
+# Updated: 2025-01-15
+
+# Compatible: Loon, Shadowrocket, Stash
+
+# Main Twitter/X domains
+
+DOMAIN-SUFFIX,twitter.com
+DOMAIN-SUFFIX,x.com
+DOMAIN-SUFFIX,twimg.com
+DOMAIN-SUFFIX,t.co
+
+# Twitter CDN and media
+
+DOMAIN-SUFFIX,abs.twimg.com
+DOMAIN-SUFFIX,pbs.twimg.com
+DOMAIN-SUFFIX,video.twimg.com
+DOMAIN-SUFFIX,ton.twimg.com
+
+# Twitter API
+
+DOMAIN-SUFFIX,api.twitter.com
+DOMAIN-SUFFIX,api.x.com
+DOMAIN-SUFFIX,upload.twitter.com
+
+# Twitter keywords
+
+DOMAIN-KEYWORD,twitter
+DOMAIN-KEYWORD,twimg
+
+# Twitter user agents
+
+USER-AGENT,*Twitter*
+USER-AGENT,*TwitterAndroid*
+USER-AGENT,*TwitteriPhone*

@@ -1,0 +1,61 @@
+# Microsoft Services Proxy Rules
+
+# Updated: 2025-01-15
+
+# Compatible: Loon, Shadowrocket, Stash
+
+# Main Microsoft domains
+
+DOMAIN-SUFFIX,microsoft.com
+DOMAIN-SUFFIX,microsoftonline.com
+DOMAIN-SUFFIX,msft.net
+DOMAIN-SUFFIX,live.com
+DOMAIN-SUFFIX,hotmail.com
+DOMAIN-SUFFIX,outlook.com
+
+# Office 365
+
+DOMAIN-SUFFIX,office.com
+DOMAIN-SUFFIX,office365.com
+DOMAIN-SUFFIX,officeapps.live.com
+DOMAIN-SUFFIX,officeppe.net
+DOMAIN-SUFFIX,sharepoint.com
+DOMAIN-SUFFIX,onedrive.live.com
+
+# Azure
+
+DOMAIN-SUFFIX,azure.com
+DOMAIN-SUFFIX,azurewebsites.net
+DOMAIN-SUFFIX,windows.net
+DOMAIN-SUFFIX,cloudapp.net
+DOMAIN-SUFFIX,azure.net
+
+# Teams
+
+DOMAIN-SUFFIX,teams.microsoft.com
+DOMAIN-SUFFIX,skype.com
+DOMAIN-SUFFIX,skypeforusiness.com
+
+# Xbox
+
+DOMAIN-SUFFIX,xbox.com
+DOMAIN-SUFFIX,xboxlive.com
+
+# Windows Store
+
+DOMAIN-SUFFIX,windowsupdate.com
+DOMAIN-SUFFIX,download.windowsupdate.com
+
+# Microsoft keywords
+
+DOMAIN-KEYWORD,microsoft
+DOMAIN-KEYWORD,msft
+DOMAIN-KEYWORD,outlook
+DOMAIN-KEYWORD,office365
+
+# Microsoft user agents
+
+USER-AGENT,*Microsoft*
+USER-AGENT,*MSOffice*
+USER-AGENT,*Outlook*
+USER-AGENT,*Teams*

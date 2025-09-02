@@ -1,0 +1,62 @@
+# Apple Services Proxy Rules
+
+# Updated: 2025-01-15
+
+# Compatible: Loon, Shadowrocket, Stash
+
+# Main Apple domains
+
+DOMAIN-SUFFIX,apple.com
+DOMAIN-SUFFIX,icloud.com
+DOMAIN-SUFFIX,me.com
+DOMAIN-SUFFIX,mac.com
+
+# Apple CDN and services
+
+DOMAIN-SUFFIX,mzstatic.com
+DOMAIN-SUFFIX,itunes.apple.com
+DOMAIN-SUFFIX,s.mzstatic.com
+DOMAIN-SUFFIX,is1-ssl.mzstatic.com
+DOMAIN-SUFFIX,is2-ssl.mzstatic.com
+DOMAIN-SUFFIX,is3-ssl.mzstatic.com
+DOMAIN-SUFFIX,is4-ssl.mzstatic.com
+DOMAIN-SUFFIX,is5-ssl.mzstatic.com
+
+# iCloud services
+
+DOMAIN-SUFFIX,icloud-content.com
+DOMAIN-SUFFIX,iwork.apple.com
+DOMAIN-SUFFIX,myicloud.net
+DOMAIN-SUFFIX,apple-cloudkit.com
+
+# App Store
+
+DOMAIN-SUFFIX,apps.apple.com
+DOMAIN-SUFFIX,itunes.com
+
+# Apple Music
+
+DOMAIN-SUFFIX,music.apple.com
+DOMAIN-SUFFIX,apple.co
+
+# Apple News
+
+DOMAIN-SUFFIX,apple.news
+
+# Apple TV+
+
+DOMAIN-SUFFIX,tv.apple.com
+
+# Apple keywords
+
+DOMAIN-KEYWORD,apple
+DOMAIN-KEYWORD,icloud
+
+# Apple user agents
+
+USER-AGENT,*com.apple*
+USER-AGENT,*Apple*
+USER-AGENT,*iPhone*
+USER-AGENT,*iPad*
+USER-AGENT,*iPod*
+USER-AGENT,*Macintosh*

@@ -1,0 +1,34 @@
+# Discord Proxy Rules
+
+# Updated: 2025-01-15
+
+# Compatible: Loon, Shadowrocket, Stash
+
+# Main Discord domains
+
+DOMAIN-SUFFIX,discord.com
+DOMAIN-SUFFIX,discordapp.com
+DOMAIN-SUFFIX,discord.gg
+DOMAIN-SUFFIX,discord.co
+DOMAIN-SUFFIX,discord.media
+DOMAIN-SUFFIX,discordapp.net
+
+# Discord CDN and media
+
+DOMAIN-SUFFIX,cdn.discordapp.com
+DOMAIN-SUFFIX,media.discordapp.net
+DOMAIN-SUFFIX,images-ext-1.discordapp.net
+DOMAIN-SUFFIX,images-ext-2.discordapp.net
+
+# Discord voice servers
+
+DOMAIN-SUFFIX,discord.new
+DOMAIN-SUFFIX,discordstatus.com
+
+# Discord keywords
+
+DOMAIN-KEYWORD,discord
+
+# Discord user agents
+
+USER-AGENT,*Discord*
