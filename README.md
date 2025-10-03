@@ -98,184 +98,18 @@ https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/microso
 
 ### Loon Production Configuration
 
-```ini
-[General]
-ipv6 = false
-skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local
-dns-server = 223.5.5.5,114.114.114.114
-
-[Proxy]
-# Add your proxy servers here
-
-[Proxy Group]
-# Streaming optimized groups
-YouTube = select,Auto,US-West,US-East,interval=300,timeout=3
-Netflix = select,Auto,US-Premium,UK-Premium,JP-Premium,interval=300,timeout=3
-
-# Social media groups  
-Telegram = select,Auto,SG-Fast,HK-Fast,interval=300,timeout=3
-Discord = select,Auto,US-Gaming,EU-Gaming,interval=300,timeout=3
-Twitter = select,Auto,Global-Fast,US-East,interval=300,timeout=3
-
-# Tech services groups
-Google = select,Auto,Global-Stable,US-West,interval=300,timeout=3
-Apple = select,Auto,Global-CDN,US-West,interval=300,timeout=3
-Microsoft = select,Auto,Global-Office,EU-West,interval=300,timeout=3
-
-[Rule]
-# Streaming services
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/youtube.list,YouTube,tag=YouTube,enabled=true
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/netflix.list,Netflix,tag=Netflix,enabled=true
-
-# Social platforms
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/telegram.list,Telegram,tag=Telegram,enabled=true
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/discord.list,Discord,tag=Discord,enabled=true
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/twitter.list,Twitter,tag=Twitter,enabled=true
-
-# Global tech services
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/google.list,Google,tag=Google,enabled=true
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/apple.list,Apple,tag=Apple,enabled=true
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/microsoft.list,Microsoft,tag=Microsoft,enabled=true
-
-# Fallback rules
-GEOIP,CN,DIRECT
-FINAL,Google
-```
+A complete, production-ready configuration for Loon is available here:
+[`loon/complete.conf`](configs/loon/complete.conf)
 
 ### Shadowrocket Optimized Configuration
 
-```ini
-[General]
-bypass-system = true
-skip-proxy = 192.168.0.0/16,10.0.0.0/8,172.16.0.0/12,localhost,*.local
-dns-server = 223.5.5.5,114.114.114.114
-update-url = https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/configs/shadowrocket/complete.conf
-
-[Rule]
-# High-priority streaming
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/youtube.list,YouTube
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/netflix.list,Netflix
-
-# Communication platforms
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/telegram.list,Telegram  
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/discord.list,Discord
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/twitter.list,Twitter
-
-# Tech ecosystem
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/google.list,Google
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/apple.list,Apple
-RULE-SET,https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/microsoft.list,Microsoft
-
-# Default routing
-GEOIP,CN,DIRECT
-FINAL,PROXY
-```
+A complete, optimized configuration for Shadowrocket is available here:
+[`shadowrocket/complete.conf`](configs/shadowrocket/complete.conf)
 
 ### Stash Advanced Configuration
 
-```yaml
-mixed-port: 7890
-allow-lan: true
-mode: rule
-log-level: info
-ipv6: false
-
-dns:
-  enable: true
-  listen: 0.0.0.0:53
-  default-nameserver:
-    - 223.5.5.5
-    - 114.114.114.114
-
-rule-providers:
-  # Streaming services
-  YouTube:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/youtube.list
-    path: ./ruleset/YouTube.yaml
-    interval: 86400
-    
-  Netflix:
-    type: http
-    behavior: classical  
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/netflix.list
-    path: ./ruleset/Netflix.yaml
-    interval: 86400
-
-  # Social platforms
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/telegram.list
-    path: ./ruleset/Telegram.yaml
-    interval: 86400
-    
-  Discord:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/discord.list
-    path: ./ruleset/Discord.yaml
-    interval: 86400
-    
-  Twitter:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/twitter.list
-    path: ./ruleset/Twitter.yaml
-    interval: 86400
-
-  # Global services
-  Google:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/google.list
-    path: ./ruleset/Google.yaml
-    interval: 86400
-    
-  Apple:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/apple.list
-    path: ./ruleset/Apple.yaml
-    interval: 86400
-    
-  Microsoft:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/microsoft.list
-    path: ./ruleset/Microsoft.yaml
-    interval: 86400
-
-proxy-groups:
-  - name: YouTube
-    type: select
-    proxies: [Auto, US-West, US-East]
-    
-  - name: Netflix  
-    type: select
-    proxies: [Auto, US-Premium, UK-Premium, JP-Premium]
-    
-  - name: Telegram
-    type: select
-    proxies: [Auto, SG-Fast, HK-Fast]
-    
-  - name: Global
-    type: select
-    proxies: [Auto, Global-Stable, US-West]
-
-rules:
-  - RULE-SET,YouTube,YouTube
-  - RULE-SET,Netflix,Netflix
-  - RULE-SET,Telegram,Telegram
-  - RULE-SET,Discord,Discord
-  - RULE-SET,Twitter,Twitter
-  - RULE-SET,Google,Global
-  - RULE-SET,Apple,Apple
-  - RULE-SET,Microsoft,Global
-  - GEOIP,CN,DIRECT
-  - MATCH,Global
-```
+An advanced, feature-rich configuration for Stash is available here:
+[`stash/complete.yaml`](configs/stash/complete.yaml)
 
 ## 🛠️ Rule Format Standards
 
@@ -347,7 +181,7 @@ proxy-rules/
 │       ├── google.list         # Google ecosystem (200+ domains)
 │       ├── apple.list          # Apple services (30+ domains)
 │       └── microsoft.list      # Microsoft suite (35+ domains)
-└── configs/                    # Complete configurations (planned)
+└── configs/                    # Complete configurations
     ├── loon/
     ├── shadowrocket/
     └── stash/
