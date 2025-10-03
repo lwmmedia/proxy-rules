@@ -71,7 +71,79 @@ rule-providers:
     path: ./ruleset/Microsoft.yaml
     interval: 86400
 
+proxies:
+  # 🚀 Add your proxy servers here.
+  #
+  # Example:
+  # - name: "My SS Proxy"
+  #   type: ss
+  #   server: your-server.com
+  #   port: 443
+  #   cipher: aes-256-gcm
+  #   password: "your-password"
+  #
+  # - name: "My Vmess Proxy"
+  #   type: vmess
+  #   server: your-server.com
+  #   port: 443
+  #   uuid: "your-uuid"
+  #   alterId: 0
+  #   cipher: auto
+
 proxy-groups:
+  # --- Auto (URL Test) Group ---
+  # This group automatically selects the fastest proxy from all regional groups.
+  - name: Auto
+    type: url-test
+    url: http://www.gstatic.com/generate_204
+    interval: 300 # Test every 5 minutes
+    proxies:
+      # Add all your regional/service groups here to be included in the speed test.
+      - US-West
+      - US-East
+      - US-Premium
+      - UK-Premium
+      - JP-Premium
+      - SG-Fast
+      - HK-Fast
+      - Global-Stable
+
+  # --- Regional & Service-Specific Groups ---
+  # These are placeholders. Add your actual proxy server names to the `proxies` list.
+  - name: US-West
+    type: select
+    proxies: [] # e.g., ["My US West Proxy 1", "My US West Proxy 2"]
+
+  - name: US-East
+    type: select
+    proxies: [] # e.g., ["My US East Proxy 1"]
+
+  - name: US-Premium
+    type: select
+    proxies: [] # e.g., ["My US Premium Proxy 1"]
+
+  - name: UK-Premium
+    type: select
+    proxies: [] # e.g., ["My UK Premium Proxy 1"]
+
+  - name: JP-Premium
+    type: select
+    proxies: [] # e.g., ["My JP Premium Proxy 1"]
+
+  - name: SG-Fast
+    type: select
+    proxies: [] # e.g., ["My SG Fast Proxy 1"]
+
+  - name: HK-Fast
+    type: select
+    proxies: [] # e.g., ["My HK Fast Proxy 1"]
+
+  - name: Global-Stable
+    type: select
+    proxies: [] # e.g., ["My Global Stable Proxy 1"]
+
+  # --- Application-Specific Groups ---
+  # These groups use the regional groups you defined above.
   - name: YouTube
     type: select
     proxies: [Auto, US-West, US-East]
