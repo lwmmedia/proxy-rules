@@ -2,6 +2,18 @@
 
 Professional rule sets for iOS proxy applications: **Loon**, **Shadowrocket**, and **Stash**.
 
+---
+
+## 🌐 Documentation Interactive
+
+**📱 [Voir le site web complet (en français)](https://lwmmedia.github.io/proxy-rules/)**
+
+*Guide interactif avec installation pas à pas, explications détaillées et liens de téléchargement pour toutes les configurations.*
+
+> **Note:** Si le lien GitHub Pages ne fonctionne pas encore, utilisez ce [lien de prévisualisation](https://htmlpreview.github.io/?https://github.com/lwmmedia/proxy-rules/blob/main/index.html).
+
+---
+
 ## 🚀 Quick Start
 
 ### Loon
