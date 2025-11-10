@@ -1,173 +1,298 @@
-mixed-port: 7890
-allow-lan: true
+# Stash Complete Configuration
+# Proxy Rules Collection by lwmmedia
+# Last Updated: November 10, 2025
+# Repository: https://github.com/lwmmedia/proxy-rules
+
+# Port configuration
+port: 7890
+socks-port: 7891
+mixed-port: 7892
+
+# Allow connections from LAN
+allow-lan: false
+
+# Bind address for LAN connections
+# bind-address: "*"
+
+# Operating mode: rule, global, direct
 mode: rule
+
+# Log level: info, warning, error, debug, silent
 log-level: info
+
+# IPv6 support
 ipv6: false
 
+# External controller
+external-controller: 127.0.0.1:9090
+
+# External UI
+# external-ui: folder
+
+# Secret for API authentication
+# secret: ""
+
+# DNS Configuration
 dns:
   enable: true
   listen: 0.0.0.0:53
+  ipv6: false
+  enhanced-mode: fake-ip
+  fake-ip-range: 198.18.0.1/16
+  fake-ip-filter:
+    - "*.lan"
+    - "*.localdomain"
+    - "*.example"
+    - "*.invalid"
+    - "*.localhost"
+    - "*.test"
+    - "*.local"
+    - "*.home.arpa"
+    - "time.*.com"
+    - "time.*.gov"
+    - "time.*.edu.cn"
+    - "time.*.apple.com"
+    - "time1.*.com"
+    - "time2.*.com"
+    - "time3.*.com"
+    - "time4.*.com"
+    - "time5.*.com"
+    - "time6.*.com"
+    - "time7.*.com"
+    - "ntp.*.com"
+    - "ntp1.*.com"
+    - "ntp2.*.com"
+    - "ntp3.*.com"
+    - "ntp4.*.com"
+    - "ntp5.*.com"
+    - "ntp6.*.com"
+    - "ntp7.*.com"
+    - "*.time.edu.cn"
+    - "*.ntp.org.cn"
+    - "+.pool.ntp.org"
+    - "time1.cloud.tencent.com"
   default-nameserver:
     - 223.5.5.5
     - 114.114.114.114
+  nameserver:
+    - https://doh.pub/dns-query
+    - https://dns.alidns.com/dns-query
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+  fallback:
+    - https://dns.google/dns-query
+    - https://cloudflare-dns.com/dns-query
+    - https://dns.quad9.net/dns-query
+  fallback-filter:
+    geoip: true
+    geoip-code: CN
+    ipcidr:
+      - 240.0.0.0/4
 
-rule-providers:
-  # Streaming services
-  YouTube:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/youtube.list
-    path: ./ruleset/YouTube.yaml
-    interval: 86400
-
-  Netflix:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/netflix.list
-    path: ./ruleset/Netflix.yaml
-    interval: 86400
-
-  # Social platforms
-  Telegram:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/telegram.list
-    path: ./ruleset/Telegram.yaml
-    interval: 86400
-
-  Discord:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/discord.list
-    path: ./ruleset/Discord.yaml
-    interval: 86400
-
-  Twitter:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/twitter.list
-    path: ./ruleset/Twitter.yaml
-    interval: 86400
-
-  # Global services
-  Google:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/google.list
-    path: ./ruleset/Google.yaml
-    interval: 86400
-
-  Apple:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/apple.list
-    path: ./ruleset/Apple.yaml
-    interval: 86400
-
-  Microsoft:
-    type: http
-    behavior: classical
-    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/microsoft.list
-    path: ./ruleset/Microsoft.yaml
-    interval: 86400
-
+# Proxies
+# Add your proxy servers here
 proxies:
-  # 🚀 Add your proxy servers here.
-  #
-  # Example:
-  # - name: "My SS Proxy"
+  # Example Shadowsocks
+  # - name: "US-West"
   #   type: ss
-  #   server: your-server.com
+  #   server: server.example.com
   #   port: 443
   #   cipher: aes-256-gcm
-  #   password: "your-password"
-  #
-  # - name: "My Vmess Proxy"
-  #   type: vmess
-  #   server: your-server.com
+  #   password: "yourpassword"
+  #   udp: true
+
+  # Example Trojan
+  # - name: "US-East"
+  #   type: trojan
+  #   server: server2.example.com
   #   port: 443
-  #   uuid: "your-uuid"
+  #   password: yourpassword
+  #   sni: server2.example.com
+  #   skip-cert-verify: false
+  #   udp: true
+
+  # Example VMess
+  # - name: "US-Central"
+  #   type: vmess
+  #   server: server3.example.com
+  #   port: 443
+  #   uuid: your-uuid-here
   #   alterId: 0
   #   cipher: auto
+  #   tls: true
+  #   skip-cert-verify: false
+  #   network: ws
+  #   ws-opts:
+  #     path: /path
 
+# Proxy Groups
 proxy-groups:
-  # --- Auto (URL Test) Group ---
-  # This group automatically selects the fastest proxy from all regional groups.
+  - name: PROXY
+    type: select
+    proxies:
+      - Auto
+      - DIRECT
+
   - name: Auto
     type: url-test
-    url: http://www.gstatic.com/generate_204
-    interval: 300 # Test every 5 minutes
+    url: http://www.google.com/generate_204
+    interval: 300
+    tolerance: 50
     proxies:
-      # Add all your regional/service groups here to be included in the speed test.
-      - US-West
-      - US-East
-      - US-Premium
-      - UK-Premium
-      - JP-Premium
-      - SG-Fast
-      - HK-Fast
-      - Global-Stable
+      # Add your proxy names here
+      # - US-West
+      # - US-East
+      # - US-Central
 
-  # --- Regional & Service-Specific Groups ---
-  # These are placeholders. Add your actual proxy server names to the `proxies` list.
-  - name: US-West
-    type: select
-    proxies: [] # e.g., ["My US West Proxy 1", "My US West Proxy 2"]
-
-  - name: US-East
-    type: select
-    proxies: [] # e.g., ["My US East Proxy 1"]
-
-  - name: US-Premium
-    type: select
-    proxies: [] # e.g., ["My US Premium Proxy 1"]
-
-  - name: UK-Premium
-    type: select
-    proxies: [] # e.g., ["My UK Premium Proxy 1"]
-
-  - name: JP-Premium
-    type: select
-    proxies: [] # e.g., ["My JP Premium Proxy 1"]
-
-  - name: SG-Fast
-    type: select
-    proxies: [] # e.g., ["My SG Fast Proxy 1"]
-
-  - name: HK-Fast
-    type: select
-    proxies: [] # e.g., ["My HK Fast Proxy 1"]
-
-  - name: Global-Stable
-    type: select
-    proxies: [] # e.g., ["My Global Stable Proxy 1"]
-
-  # --- Application-Specific Groups ---
-  # These groups use the regional groups you defined above.
+  # Streaming Services
   - name: YouTube
     type: select
-    proxies: [Auto, US-West, US-East]
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
 
   - name: Netflix
     type: select
-    proxies: [Auto, US-Premium, UK-Premium, JP-Premium]
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
 
+  # Social Media
   - name: Telegram
     type: select
-    proxies: [Auto, SG-Fast, HK-Fast]
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
 
-  - name: Global
+  - name: Discord
     type: select
-    proxies: [Auto, Global-Stable, US-West]
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
 
+  - name: Twitter
+    type: select
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
+
+  # Global Tech Services
+  - name: Google
+    type: select
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
+
+  - name: Apple
+    type: select
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
+
+  - name: Microsoft
+    type: select
+    proxies:
+      - PROXY
+      - Auto
+      - DIRECT
+
+# Rule Providers
+rule-providers:
+  # Streaming Services
+  youtube:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/youtube.list
+    path: ./ruleset/youtube.yaml
+    interval: 86400
+
+  netflix:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/streaming/netflix.list
+    path: ./ruleset/netflix.yaml
+    interval: 86400
+
+  # Social Media Platforms
+  telegram:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/telegram.list
+    path: ./ruleset/telegram.yaml
+    interval: 86400
+
+  discord:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/discord.list
+    path: ./ruleset/discord.yaml
+    interval: 86400
+
+  twitter:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/social/twitter.list
+    path: ./ruleset/twitter.yaml
+    interval: 86400
+
+  # Global Tech Services
+  google:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/google.list
+    path: ./ruleset/google.yaml
+    interval: 86400
+
+  apple:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/apple.list
+    path: ./ruleset/apple.yaml
+    interval: 86400
+
+  microsoft:
+    type: http
+    behavior: classical
+    url: https://raw.githubusercontent.com/lwmmedia/proxy-rules/main/rules/global/microsoft.list
+    path: ./ruleset/microsoft.yaml
+    interval: 86400
+
+# Rules
 rules:
-  - RULE-SET,YouTube,YouTube
-  - RULE-SET,Netflix,Netflix
-  - RULE-SET,Telegram,Telegram
-  - RULE-SET,Discord,Discord
-  - RULE-SET,Twitter,Twitter
-  - RULE-SET,Google,Global
-  - RULE-SET,Apple,Apple
-  - RULE-SET,Microsoft,Global
+  # Anti-AD (optional - uncomment to enable)
+  # - DOMAIN-SUFFIX,googlesyndication.com,REJECT
+  # - DOMAIN-SUFFIX,googleadservices.com,REJECT
+  # - DOMAIN-KEYWORD,adservice,REJECT
+
+  # Streaming Services
+  - RULE-SET,youtube,YouTube
+  - RULE-SET,netflix,Netflix
+
+  # Social Media Platforms
+  - RULE-SET,telegram,Telegram
+  - RULE-SET,discord,Discord
+  - RULE-SET,twitter,Twitter
+
+  # Global Tech Services
+  - RULE-SET,google,Google
+  - RULE-SET,apple,Apple
+  - RULE-SET,microsoft,Microsoft
+
+  # Local Network
+  - IP-CIDR,192.168.0.0/16,DIRECT
+  - IP-CIDR,10.0.0.0/8,DIRECT
+  - IP-CIDR,172.16.0.0/12,DIRECT
+  - IP-CIDR,127.0.0.0/8,DIRECT
+
+  # China IP
   - GEOIP,CN,DIRECT
-  - MATCH,Global
+
+  # Final Rule
+  - MATCH,PROXY
