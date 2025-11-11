@@ -2,6 +2,23 @@
 
 Professional rule sets for iOS proxy applications: **Loon**, **Shadowrocket**, and **Stash**.
 
+## 🇫🇷 Optimisé pour la France
+
+**Ces configurations sont spécifiquement développées pour un usage en France.**
+
+### Objectifs principaux :
+
+- **🚀 Optimisation des flux** : Routage intelligent pour minimiser la latence et maximiser les performances
+- **🔒 Sécurité renforcée** : Blocage des trackers, publicités et domaines malveillants
+- **⚡ Performance** : Accès direct aux sites français et européens, proxy uniquement pour les services nécessaires
+- **🎯 Ciblage précis** : Règles configurées pour l'écosystème internet français
+
+### Configuration par défaut :
+
+- **DIRECT** : Sites français, européens et services locaux (latence minimale)
+- **PROXY** : Streaming international (YouTube, Netflix), réseaux sociaux, services globaux
+- **REJECT** : Trackers, publicités, domaines malveillants
+
 ---
 
 ## 🌐 Documentation Interactive
