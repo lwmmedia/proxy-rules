@@ -3,6 +3,11 @@
 # Last Updated: November 10, 2025
 # Repository: https://github.com/lwmmedia/proxy-rules
 
+# Subscription Configuration
+# Uncomment and fill in your proxy provider's subscription URL
+# This displays traffic usage, remaining quota, and expiration date
+# subscribe-url: "https://your-provider.com/api/v1/client/subscribe?token=your-token"
+
 # Port configuration
 port: 7890
 socks-port: 7891
@@ -88,8 +93,22 @@ dns:
     ipcidr:
       - 240.0.0.0/4
 
+# Proxy Providers
+# Automatically load proxy servers from subscription URL
+proxy-providers:
+  # Example: Uncomment and configure with your provider's subscription URL
+  # my-provider:
+  #   type: http
+  #   url: "https://your-provider.com/api/v1/client/subscribe?token=your-token"
+  #   interval: 3600
+  #   path: ./providers/my-provider.yaml
+  #   health-check:
+  #     enable: true
+  #     interval: 600
+  #     url: http://www.google.com/generate_204
+
 # Proxies
-# Add your proxy servers here
+# Add your proxy servers here manually (alternative to proxy-providers)
 proxies:
   # Example Shadowsocks
   # - name: "US-West"
@@ -137,8 +156,11 @@ proxy-groups:
     url: http://www.google.com/generate_204
     interval: 300
     tolerance: 50
+    # Option 1: Use proxy-providers (recommended for subscriptions)
+    # use:
+    #   - my-provider
+    # Option 2: Manually list proxy names
     proxies:
-      # Add your proxy names here
       # - US-West
       # - US-East
       # - US-Central
